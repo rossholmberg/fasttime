@@ -17,6 +17,8 @@ SEXP parse_ts(SEXP str, SEXP sRequiredComp) {
     double *tsv;
     int required_components = Rf_asInteger(sRequiredComp);
     int n, i;
+    int warn_nas_range = 0;
+    int warn_nas_components = 0;
     if (TYPEOF(str) != STRSXP) Rf_error("invalid timestamp vector");
     n = LENGTH(str);
     res = Rf_allocVector(REALSXP, n);
@@ -34,6 +36,7 @@ SEXP parse_ts(SEXP str, SEXP sRequiredComp) {
 	       unsigned int POSIX time without getting into more leap year mess */
 	    if (y < 0 || y >= 230 ) {
 		tsv[i] = NA_REAL;
+	    warn_nas_range = 1;
 		continue;
 	    } else {
 		/* adjust for all leap years prior to the current one */
@@ -76,7 +79,14 @@ SEXP parse_ts(SEXP str, SEXP sRequiredComp) {
 		}
 	    }
 	}
-	tsv[i] = (comp >= required_components) ? ts : NA_REAL;
-    }
+	if (comp >= required_components) {
+	    tsv[i] = ts;
+	} else {
+	    tsv[i] = NA_REAL;
+	    warn_nas_components = 1;
+	}
+	}
+    if (warn_nas_components == 1) Rf_warning("NAs introduced. Too few components on input.");
+    if (warn_nas_range == 1) Rf_warning("NAs introduced. Only years 1970-2199 are currently supported.");
     return res;
 }
