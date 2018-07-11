@@ -11,6 +11,7 @@ SEXP parse_time(SEXP str, SEXP sRequiredComp) {
     double *tsv;
     int required_components = Rf_asInteger(sRequiredComp);
     int n, i, comp;
+    int warn_mstrunc = 0;
     double ts;
     if (TYPEOF(str) != STRSXP) Rf_error("invalid times vector");
     n = LENGTH(str);
@@ -62,6 +63,10 @@ SEXP parse_time(SEXP str, SEXP sRequiredComp) {
     			        if (*c) {
     			            ms = ms + (*c - '0');
     			        }
+    			        c++;
+    			        if (*c) {
+    			            warn_mstrunc = 1;
+    			        }
     			        ts += ms / 86400000;
     			        comp++;
     			    }
@@ -70,5 +75,8 @@ SEXP parse_time(SEXP str, SEXP sRequiredComp) {
 	    }
     	tsv[i] = (comp >= required_components) ? ts : NA_REAL;
 	}
+    if (warn_mstrunc == 1) {
+        Rf_warning("Time values truncated to ms. Some precision may be lost.");
+    }
     return res;
 }
