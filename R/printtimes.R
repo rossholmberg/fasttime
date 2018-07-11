@@ -3,12 +3,6 @@ print.times <- function(x, ...) {
     ## print whole days (no fraction) as regular integers
     if(all(is.na(x)) || any(x[!is.na(x)] >= 1))
         cat("Time in days:\n")
-    x <- format.times(x, ...)
-    NextMethod("print", quote = FALSE)
-    invisible(xo)
-}
-
-format.times <- function(x, ...) {
     att <- attributes(x)
     nas <- is.na(x)
     att$class <- att$format <- att$origin <- NULL
@@ -45,5 +39,11 @@ format.times <- function(x, ...) {
     out[x == Inf] <- "Inf"
     out[x ==  - Inf] <- "-Inf"
     attributes(out) <- att
-    out
+    x <- out
+    NextMethod("print", quote = FALSE)
+    invisible(xo)
+}
+
+format.times <- function(x, ...) {
+    
 }
