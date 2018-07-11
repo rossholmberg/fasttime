@@ -1,2 +1,2 @@
-useDynLib(fasttime, parse_ts, parse_date)
-export(fastPOSIXct, fastDate)
+useDynLib(fasttime, parse_ts, parse_date, parse_time)
+export(fastPOSIXct, fastDate, fastTime, print.times, format.times)
