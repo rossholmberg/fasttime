@@ -53,9 +53,7 @@ print.ftime <- function(x, ...) {
     # redefine attributes
     attributes(out) <- att
     
-    x <- out
-    
-    NextMethod("print", quote = FALSE)
+    print( as.character( out ), quote = FALSE )
     
     # invisibly return the input object
     invisible(xo)
