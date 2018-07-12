@@ -28,7 +28,7 @@ ftime(x, required.components = 3L)
   Simon Urbanek
 }
 \seealso{
-  \code{\link{chron::times}}
+  \code{chron::times}
 }
 \examples{
   ## let us generate a bunch of random timestamps until today
@@ -38,7 +38,9 @@ ftime(x, required.components = 3L)
   system.time(a <- chron::times(ts))
 
   ## same using the fast method
-  system.time(b <- fastTime(ts))
+  system.time(b <- ftime(ts))
 
-  all.equal(a, b)
+  # very slight differences in results exist, but they are negligible
+  # the sum total difference for this 100,000 samples is less than 1 microsecond
+  sum( abs( as.numeric( a ) - as.numeric( b ) ) ) < ( 1E-6 / 86400 )
 }
