@@ -1,18 +1,24 @@
 
-fastPOSIXct <- function(x, tz, required.components = 3L) {
+fposx <- function(x, required.components = 3L) {
 
-    .POSIXct(
-        xx = if( is.character( x ) ) {
-            .Call(parse_ts, x, required.components)
-        } else {
-            .Call(parse_ts, as.character(x), required.components)
-        },
-
-        tz = if( missing(tz) ) {
-            "UTC"
-        } else {
-            tz
-        }
-    )
+    if( is.character( x ) ) {
+        out <- .POSIXct( xx = .Call(parse_ts,
+                                    x,
+                                    required.components),
+                         tz = "UTC" )
+    } else if( is.factor( x ) ) {
+        out <- .POSIXct( xx = .Call(parse_ts,
+                                    as.character(x),
+                                    required.components),
+                         tz = "UTC" )
+    } else if( is.numeric( x ) ) {
+        out <- .POSIXct( xx = x, tz = "UTC" )
+    } else {
+        stop( "Don't know how to convert to fposx" )
+    }
+    
+    attr( out, "class" ) <- c( "fposx", class( out ) )
+    
+    out
 
 }
