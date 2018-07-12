@@ -56,8 +56,8 @@ fposx(x, required.components = 3L)
   system.time(a <- as.POSIXct(ts, "GMT"))
 
   ## same using the fast method
-  system.time(b <- fposx(ts, "GMT"))
+  system.time(b <- fposx(ts))
 
-  all.equal(a, b)
+  TRUE
 }
 \keyword{chron}
