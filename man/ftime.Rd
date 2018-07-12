@@ -1,5 +1,5 @@
-\name{fastTime}
-\alias{fastTime}
+\name{ftime}
+\alias{ftime}
 \title{
   Fast version of \code{chron::times}.
 }
@@ -8,7 +8,7 @@
   of magnitude since it uses pure text parsing and no system calls.
 }
 \usage{
-fastTime(x, required.components = 3L)
+ftime(x, required.components = 3L)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
