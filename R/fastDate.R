@@ -1,4 +1,4 @@
-fastDate <- function(x, required.components = 3L) {
+fdate <- function(x, required.components = 3L) {
     if( !is.character(x) ) {
         x <- as.character(x)
     }

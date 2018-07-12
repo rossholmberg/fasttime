@@ -1,5 +1,5 @@
-\name{fastDate}
-\alias{fastDate}
+\name{fdate}
+\alias{fdate}
 \title{
   Fast version of \code{as.Date.character}.
 }
@@ -8,7 +8,7 @@
   of magnitude since it uses pure text parsing and no system calls.
 }
 \usage{
-fastDate(x, required.components = 3L)
+fdate(x, required.components = 3L)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -41,7 +41,7 @@ fastDate(x, required.components = 3L)
   system.time(a <- as.Date(x))
 
   ## same using the fast method
-  system.time(b <- fastDate(x))
+  system.time(b <- fdate(x))
 
   identical(a, b)
 }
