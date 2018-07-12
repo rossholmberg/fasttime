@@ -86,7 +86,11 @@ SEXP parse_ts(SEXP str, SEXP sRequiredComp) {
 	    warn_nas_components = 1;
 	}
 	}
-    if (warn_nas_components == 1) Rf_warning("NAs introduced. Too few components on input.");
-    if (warn_nas_range == 1) Rf_warning("NAs introduced. Only years 1970-2199 are currently supported.");
+    if (warn_nas_components == 1) {
+        Rf_warning("NAs introduced. Too few components on input.");
+    }
+    if (warn_nas_range == 1) {
+        Rf_warning("NAs introduced. Only years 1970-2199 are currently supported. Wider input ranges may be supported in the future.");
+    }
     return res;
 }
