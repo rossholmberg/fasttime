@@ -4,7 +4,7 @@ fastTime <- function(x, required.components = 3L) {
     }
     
     out <- .Call(parse_time, x, required.components)
-    attr(out, "class") <- "times"
+    attr(out, "class") <- c( "ftime", "times" )
     attr(out, "format") <- "h:m:s"
     out
     
