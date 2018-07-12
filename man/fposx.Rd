@@ -53,11 +53,14 @@ fposx(x, required.components = 3L)
   ts <- as.character(.POSIXct(runif(1e4) * unclass(Sys.time()), "GMT"))
 
   ## convert them using as.POSIXct
-  system.time(a <- as.POSIXct(ts, "GMT"))
+  system.time(a <- as.POSIXct(ts, "UTC"))
 
   ## same using the fast method
   system.time(b <- fposx(ts))
 
-  TRUE
+  # `fposx` object has an extra class attribute, but is otherwise identical
+  attr(b, "class") <- attr(a, "class")
+  
+  identical( a, b )
 }
 \keyword{chron}
