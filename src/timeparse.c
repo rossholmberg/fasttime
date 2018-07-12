@@ -53,18 +53,18 @@ SEXP parse_time(SEXP str, SEXP sRequiredComp) {
     			    comp++;
     			    
     			    while (*c && !DIGIT(*c)) c++;
-    			    if (*c) {
+    			    if (*c && DIGIT(*c)) {
     			        ms = (*c - '0') * 100;
     			        c++;
-    			        if (*c) {
+    			        if (*c && DIGIT(*c)) {
     			            ms = ms + (*c - '0') * 10;
     			        }
     			        c++;
-    			        if (*c) {
+    			        if (*c && DIGIT(*c)) {
     			            ms = ms + (*c - '0');
     			        }
     			        c++;
-    			        if (*c) {
+    			        if (*c && DIGIT(*c)) {
     			            warn_mstrunc = 1;
     			        }
     			        ts += ms / 86400000;
