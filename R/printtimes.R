@@ -3,6 +3,9 @@ print.ftime <- function(x, ...) {
     # make a copy of the input to return at the end
     xo <- x
     
+    # note which values are NA
+    nas <- is.na( x )
+    
     # read input attributes
     att <- attributes(x)
     
