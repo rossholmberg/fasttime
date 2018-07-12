@@ -1,4 +1,4 @@
-fastTime <- function(x, required.components = 3L) {
+ftime <- function(x, required.components = 3L) {
     if( !is.character(x) ) {
         x <- as.character(x)
     }
