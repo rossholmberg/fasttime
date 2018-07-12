@@ -13,15 +13,13 @@ print.ftime <- function(x, ...) {
     att$class <- att$format <- att$origin <- NULL
     
     # make sure the input is numeric
-    if( !is.numeric(x) ) {
-        x <- as.numeric(x)
-    }
+    x <- as.numeric(x)
 
     # get the number of seconds since midnight
     sec <- round(86400 * abs(x))
     
     # use that to get other values
-    ms <- round((x - sec) * 1000)
+    ms <- round((x*86400 - sec) * 1000)
     hh <- sec %/% 3600
     mm <- (sec - hh * 3600) %/% 60
     ss <- trunc(sec - hh * 3600 - 60 * mm)
@@ -56,6 +54,7 @@ print.ftime <- function(x, ...) {
     attributes(out) <- att
     
     x <- out
+    
     NextMethod("print", quote = FALSE)
     
     # invisibly return the input object
