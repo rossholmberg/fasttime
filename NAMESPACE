@@ -1,2 +1,5 @@
 useDynLib(fasttime, parse_ts, parse_date, parse_time)
 export(fposx, fdate, ftime, print.ftime, print.fposx, as.POSIXct.fposx)
+S3method(print, fposx)
+S3method(print, ftime)
+S3method(as.POSIXct, fposx)

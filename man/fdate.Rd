@@ -1,11 +1,14 @@
 \name{fdate}
 \alias{fdate}
 \title{
-  Fast version of \code{as.Date.character}.
+  Fast conversion to \code{Date}, similar to \code{as.Date.character}.
 }
 \description{
-  It is extremely fast (compared to \code{as.Date} by several orders
+  A much faster conversion method than (compared to \code{as.Date} by several orders
   of magnitude since it uses pure text parsing and no system calls.
+  
+  The code here is a modified version of Simon Urbanek's excellent
+  \code{fastPOSIXct} function \cite{http://www.rforge.net/fasttime}.
 }
 \usage{
 fdate(x, required.components = 3L)
@@ -27,7 +30,7 @@ fdate(x, required.components = 3L)
 %\references{
 %}
 \author{
-  Simon Urbanek
+  Ross Holmberg
 }
 \seealso{
   \code{\link{as.Date}}

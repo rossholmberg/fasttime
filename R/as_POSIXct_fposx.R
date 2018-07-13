@@ -1,5 +1,5 @@
 
-as.POSIXct.fposx <- function( x, tz ) {
+as.POSIXct.fposx <- function( x, tz, ... ) {
     
     # remove the fposx class attribute
     attr( x, "class" ) <- class( x )[ class(x) != "fposx" ]
@@ -9,6 +9,6 @@ as.POSIXct.fposx <- function( x, tz ) {
         attr( x, "tzone" ) <- tz
     }
     
-    x
+    as.POSIXct( x, tz, ... )
     
 }
