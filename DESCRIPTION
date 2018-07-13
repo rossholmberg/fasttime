@@ -1,10 +1,13 @@
 Package: fasttime
 Version: 1.0-3
 Title: Fast Utility Function for Time Parsing and Conversion
-Author: Simon Urbanek <simon.urbanek@r-project.org>
-Maintainer: Simon Urbanek <simon.urbanek@r-project.org>
-Description: Fast functions for timestamp
-	manipulation that avoid system calls and take shortcuts
-	to facilitate operations on very large data.
-License: GPL-2
+Author: Ross Holmberg <ross@holmberg.com.au>
+Maintainer: Ross Holmberg <ross@holmberg.com.au>
+Description: Functions for timestamp manipulation that are
+  optimised for speed (using methods from Simon Urbanek's
+  excellent fasttime package, http://www.rforge.net/fasttime).
+  datetimes are intended for use without regard for timezones,
+  such that the user handles timezone and daylight saving
+  related timeshifts manually.
+License: GPL-3 + file LICENSE
 URL: http://www.rforge.net/fasttime
