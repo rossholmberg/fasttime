@@ -30,7 +30,7 @@ ftime(x, required.components = 3L)
   Ross Holmberg
 }
 \examples{
-  ## let us generate a bunch of random times
+  ## let us generate a bunch of random times, with millisend precision
   set.seed(42)
   n <- 1E5
   hrs <- formatC( sample( 0:23, n, replace = TRUE ), width = 2, flag = "0" )
@@ -40,7 +40,7 @@ ftime(x, required.components = 3L)
   ts <- paste0( hrs, ":", min, ":", sec, ".", ms )
 
   ## convert them using chron::times
-  system.time(a <- chron::times(ts))
+  # system.time(a <- chron::times(ts))
 
   ## same using the fast method
   system.time(b <- ftime(ts))
@@ -51,5 +51,6 @@ ftime(x, required.components = 3L)
 
   # very slight differences in results exist, but they are negligible
   # the sum total difference for this 100,000 samples is less than 1 microsecond
-  sum( abs( as.numeric( a ) - as.numeric( b ) ) ) < ( 1E-6 / 86400 )
+  # sum( abs( as.numeric( a ) - as.numeric( b ) ) ) < ( 1E-6 / 86400 )
+  # TRUE
 }
